@@ -1,0 +1,11 @@
+{
+  "case_id": "wrong_sort_order",
+  "title": "Wrong sort order",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,6 +1,6 @@\n \"\"\"Buggy score sorting.\"\"\"\n \n \n def top_scores(scores: list[int]) -> list[int]:\n     \"\"\"Return the three highest scores.\"\"\"\n-    return sorted(scores)[:3]\n+    return sorted(scores, reverse=True)[:3]\n"
+}

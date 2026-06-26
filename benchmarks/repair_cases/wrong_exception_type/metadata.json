@@ -1,0 +1,11 @@
+{
+  "case_id": "wrong_exception_type",
+  "title": "Wrong exception type",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,9 +1,9 @@\n \"\"\"Buggy integer parsing.\"\"\"\n \n \n def parse_positive_int(value: str) -> int:\n     \"\"\"Parse a positive integer from text.\"\"\"\n     parsed = int(value)\n     if parsed <= 0:\n-        raise RuntimeError(\"value must be positive\")\n+        raise ValueError(\"value must be positive\")\n     return parsed\n"
+}

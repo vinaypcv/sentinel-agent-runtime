@@ -1,0 +1,11 @@
+{
+  "case_id": "missing_none_check",
+  "title": "Missing None check",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,6 +1,8 @@\n \"\"\"Buggy name normalization.\"\"\"\n \n \n def normalize_name(name: str | None) -> str:\n     \"\"\"Return a display-ready name.\"\"\"\n+    if name is None:\n+        return \"\"\n     return name.strip().title()\n"
+}

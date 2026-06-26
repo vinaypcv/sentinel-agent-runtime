@@ -1,0 +1,11 @@
+{
+  "case_id": "bounded_stack_capacity_bug",
+  "title": "Bounded stack capacity bug",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,17 +1,19 @@\n \"\"\"Buggy bounded stack implementation.\"\"\"\n \n \n class BoundedStack:\n     \"\"\"A stack that should retain only the newest items up to capacity.\"\"\"\n \n     def __init__(self, capacity: int) -> None:\n         self.capacity = capacity\n         self.items: list[int] = []\n \n     def push(self, item: int) -> None:\n         \"\"\"Push an item onto the stack.\"\"\"\n+        if len(self.items) >= self.capacity:\n+            self.items.pop(0)\n         self.items.append(item)\n \n     def pop(self) -> int:\n         \"\"\"Pop the newest item.\"\"\"\n         return self.items.pop()\n"
+}

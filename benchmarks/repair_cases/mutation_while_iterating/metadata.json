@@ -1,0 +1,11 @@
+{
+  "case_id": "mutation_while_iterating",
+  "title": "Mutation while iterating",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,9 +1,6 @@\n \"\"\"Buggy list filtering.\"\"\"\n \n \n def remove_even(numbers: list[int]) -> list[int]:\n     \"\"\"Remove even numbers from the list.\"\"\"\n-    for number in numbers:\n-        if number % 2 == 0:\n-            numbers.remove(number)\n-    return numbers\n+    return [number for number in numbers if number % 2 != 0]\n"
+}

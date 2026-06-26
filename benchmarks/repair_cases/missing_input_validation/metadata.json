@@ -1,0 +1,11 @@
+{
+  "case_id": "missing_input_validation",
+  "title": "Missing input validation",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,6 +1,9 @@\n \"\"\"Buggy account creation.\"\"\"\n \n \n def create_account(username: str) -> dict[str, str]:\n     \"\"\"Create a minimal account payload.\"\"\"\n-    return {\"username\": username}\n+    normalized = username.strip()\n+    if not normalized:\n+        raise ValueError(\"username is required\")\n+    return {\"username\": normalized}\n"
+}

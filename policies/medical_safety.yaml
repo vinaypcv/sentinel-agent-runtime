@@ -1,0 +1,20 @@
+policy_id: medical_safety_v1
+domain: clinical
+rules:
+  - id: max_compound_x_dosage
+    type: numeric_bound
+    entity: Compound-X
+    field: dosage_mg
+    operator: "<="
+    value: 50
+    severity: critical
+
+  - id: exclude_chronic_kidney_disease
+    type: exclusion
+    entity: chronic kidney disease
+    severity: critical
+
+  - id: prohibit_aspirin_with_compound_x
+    type: exclusion
+    entity: aspirin
+    severity: high

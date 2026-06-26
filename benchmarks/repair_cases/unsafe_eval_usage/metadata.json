@@ -1,0 +1,11 @@
+{
+  "case_id": "unsafe_eval_usage",
+  "title": "Unsafe eval usage",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,6 +1,33 @@\n \"\"\"Buggy expression calculator.\"\"\"\n+\n+import ast\n+\n+\n+ALLOWED_OPERATORS = {\n+    ast.Add: lambda left, right: left + right,\n+    ast.Sub: lambda left, right: left - right,\n+    ast.Mult: lambda left, right: left * right,\n+}\n+\n+\n+def evaluate_node(node: ast.AST) -> int:\n+    \"\"\"Evaluate a restricted arithmetic AST.\"\"\"\n+    if isinstance(node, ast.Expression):\n+        return evaluate_node(node.body)\n+    if isinstance(node, ast.Constant) and isinstance(node.value, int):\n+        return node.value\n+    if isinstance(node, ast.BinOp):\n+        operator = ALLOWED_OPERATORS.get(type(node.op))\n+        if operator is None:\n+            raise ValueError(\"unsupported operator\")\n+        return operator(evaluate_node(node.left), evaluate_node(node.right))\n+    raise ValueError(\"unsupported expression\")\n \n \n def calculate(expression: str) -> int:\n     \"\"\"Calculate a simple arithmetic expression.\"\"\"\n-    return int(eval(expression))\n+    try:\n+        parsed = ast.parse(expression, mode=\"eval\")\n+    except SyntaxError as error:\n+        raise ValueError(\"invalid expression\") from error\n+    return evaluate_node(parsed)\n"
+}

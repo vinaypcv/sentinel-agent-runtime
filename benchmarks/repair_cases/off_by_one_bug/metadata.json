@@ -1,0 +1,11 @@
+{
+  "case_id": "off_by_one_bug",
+  "title": "Off-by-one range bug",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,6 +1,6 @@\n \"\"\"Buggy range helper.\"\"\"\n \n \n def inclusive_range(start: int, end: int) -> list[int]:\n     \"\"\"Return a list that should include both endpoints.\"\"\"\n-    return list(range(start, end))\n+    return list(range(start, end + 1))\n"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": "incorrect_aggregation_logic",
+  "title": "Incorrect aggregation logic",
+  "source_file": "solution.py",
+  "test_file": "test_solution.py",
+  "expected_behavior_file": "expected_behavior.md",
+  "expected_files_changed": [
+    "solution.py"
+  ],
+  "mock_patch": "diff --git a/solution.py b/solution.py\n--- a/solution.py\n+++ b/solution.py\n@@ -1,18 +1,18 @@\n \"\"\"Buggy sales aggregation.\"\"\"\n \n from typing import TypedDict\n \n \n class Sale(TypedDict):\n     \"\"\"One sale record.\"\"\"\n \n     category: str\n     amount: int\n \n \n def total_by_category(sales: list[Sale]) -> dict[str, int]:\n     \"\"\"Return total amount by category.\"\"\"\n     totals: dict[str, int] = {}\n     for sale in sales:\n-        totals[sale[\"category\"]] = sale[\"amount\"]\n+        totals[sale[\"category\"]] = totals.get(sale[\"category\"], 0) + sale[\"amount\"]\n     return totals\n"
+}

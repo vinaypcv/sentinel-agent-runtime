@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets.*
+client_secret.json
+config/client_secret.json
+
+# Pytest / coverage
+.pytest_cache/
+.pytest-tmp/
+.pytest-runs/
+.coverage
+htmlcov/
+coverage.xml
+
+# Logs and ledgers
+*.log
+logs/
+runtime_logs/
+karma_ledger.jsonl
+*.jsonl
+
+# Benchmark generated results
+benchmarks/results/
+benchmark_results/
+
+# Benchmark generated outputs
+benchmarks/results/
+
+# Local cache / model cache
+.cache/
+.cache*/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+# Local debug/demo outputs
+.debug-repair/
+repair-summary.json
+repair-error.txt
+# Raw prototype notebooks/docs may contain secrets
+docs/raw/
+
+# Generated outputs
+benchmarks/results/
+.pytest-runs/
+.pytest_cache/
+.pytest-tmp/
+.debug-repair/
+repair-summary.json
+repair-error.txt
